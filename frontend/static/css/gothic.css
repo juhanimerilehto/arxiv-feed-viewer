@@ -1,0 +1,386 @@
+/* ========================================================================
+   GOTHIC ARXIV - Techno-Gothic Terminal Aesthetic
+   Pure black background, phosphor green text, ASCII borders
+   ======================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-black: #000000;
+    --text-green: #00FF00;
+    --border-green: #00FF00;
+    --glow-green: 0 0 5px #00FF00;
+    --glow-bright: 0 0 10px #00FF00, 0 0 20px #00FF00;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: var(--bg-black);
+    color: var(--text-green);
+    text-shadow: var(--glow-green);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================================================
+   HEADER
+   ======================================================================== */
+
+.header {
+    margin-bottom: 30px;
+}
+
+.ascii-logo {
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: var(--glow-green);
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 1;
+    max-width: 500px;
+    padding: 10px 15px;
+    background-color: var(--bg-black);
+    border: 2px solid var(--border-green);
+    color: var(--text-green);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    text-shadow: var(--glow-green);
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    box-shadow: var(--glow-bright);
+}
+
+.search-input::placeholder {
+    color: #00AA00;
+    text-shadow: none;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: var(--bg-black);
+    border: 2px solid var(--border-green);
+    color: var(--text-green);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    text-shadow: var(--glow-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--text-green);
+    color: var(--bg-black);
+    box-shadow: var(--glow-bright);
+    text-shadow: none;
+}
+
+/* ========================================================================
+   MAIN CONTENT
+   ======================================================================== */
+
+.main-content {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.loading, .no-results {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.loading pre, .no-results pre {
+    display: inline-block;
+    text-align: left;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ========================================================================
+   THREE COLUMN LAYOUT
+   ======================================================================== */
+
+.three-column {
+    display: grid;
+    grid-template-columns: 25% 40% 35%;
+    gap: 20px;
+    height: 100%;
+}
+
+.column {
+    border: 2px solid var(--border-green);
+    padding: 20px;
+    overflow-y: auto;
+    height: 70vh;
+}
+
+/* Custom scrollbar */
+.column::-webkit-scrollbar {
+    width: 10px;
+}
+
+.column::-webkit-scrollbar-track {
+    background: var(--bg-black);
+    border: 1px solid var(--border-green);
+}
+
+.column::-webkit-scrollbar-thumb {
+    background: var(--text-green);
+    border: 1px solid var(--bg-black);
+}
+
+.column::-webkit-scrollbar-thumb:hover {
+    box-shadow: var(--glow-green);
+}
+
+/* ========================================================================
+   SECTION STYLING
+   ======================================================================== */
+
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-green);
+    letter-spacing: 2px;
+}
+
+.subsection-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+/* ========================================================================
+   LEFT COLUMN: METADATA
+   ======================================================================== */
+
+.paper-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.paper-meta {
+    margin-bottom: 15px;
+}
+
+.meta-item {
+    margin-bottom: 8px;
+}
+
+.meta-label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.paper-authors {
+    margin-bottom: 20px;
+}
+
+.author {
+    display: block;
+    margin-left: 20px;
+    margin-bottom: 3px;
+}
+
+.author::before {
+    content: '► ';
+}
+
+.paper-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.paper-actions .btn {
+    width: 100%;
+}
+
+#bookmarkBtn.bookmarked {
+    background-color: var(--text-green);
+    color: var(--bg-black);
+    text-shadow: none;
+}
+
+/* ========================================================================
+   CENTER COLUMN: ABSTRACT
+   ======================================================================== */
+
+.paper-abstract {
+    text-align: justify;
+    line-height: 1.8;
+}
+
+/* ========================================================================
+   RIGHT COLUMN: GROK INSIGHTS
+   ======================================================================== */
+
+.grok-analysis {
+    line-height: 1.8;
+}
+
+.insight {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.insight::before {
+    content: '►';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.no-analysis {
+    text-align: center;
+    padding: 50px 20px;
+    opacity: 0.6;
+}
+
+/* ========================================================================
+   FOOTER NAVIGATION
+   ======================================================================== */
+
+.footer {
+    border-top: 2px solid var(--border-green);
+    padding-top: 20px;
+}
+
+.nav-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-btn {
+    padding: 12px 30px;
+    background-color: var(--bg-black);
+    border: 2px solid var(--border-green);
+    color: var(--text-green);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: var(--glow-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background-color: var(--text-green);
+    color: var(--bg-black);
+    box-shadow: var(--glow-bright);
+    text-shadow: none;
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* ========================================================================
+   RESPONSIVE DESIGN
+   ======================================================================== */
+
+@media (max-width: 1200px) {
+    .three-column {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .column {
+        max-height: none;
+    }
+
+    .ascii-logo {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .search-input {
+        max-width: 100%;
+    }
+
+    .nav-controls {
+        flex-direction: column;
+    }
+
+    .ascii-logo {
+        font-size: 6px;
+    }
+}
+
+/* ========================================================================
+   ANIMATIONS
+   ======================================================================== */
+
+@keyframes pulse {
+    0%, 100% {
+        text-shadow: var(--glow-green);
+    }
+    50% {
+        text-shadow: var(--glow-bright);
+    }
+}
+
+.loading {
+    animation: pulse 2s ease-in-out infinite;
+}

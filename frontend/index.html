@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTHIC ARXIV :: GENAI×CYBERSECURITY FEED</title>
+    <link rel="stylesheet" href="/static/css/gothic.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <pre class="ascii-logo">
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  ██████╗  ██████╗ ████████╗██╗  ██╗██╗ ██████╗     █████╗ ██████╗ ██╗  ██╗██╗██╗   ██╗ ║
+║ ██╔════╝ ██╔═══██╗╚══██╔══╝██║  ██║██║██╔════╝    ██╔══██╗██╔══██╗╚██╗██╔╝██║██║   ██║ ║
+║ ██║  ███╗██║   ██║   ██║   ███████║██║██║         ███████║██████╔╝ ╚███╔╝ ██║██║   ██║ ║
+║ ██║   ██║██║   ██║   ██║   ██╔══██║██║██║         ██╔══██║██╔══██╗ ██╔██╗ ██║╚██╗ ██╔╝ ║
+║ ╚██████╔╝╚██████╔╝   ██║   ██║  ██║██║╚██████╗    ██║  ██║██║  ██║██╔╝ ██╗██║ ╚████╔╝  ║
+║  ╚═════╝  ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝ ╚═════╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ║
+║                                                                                           ║
+║                   [ GenAI × Cybersecurity Research Feed ]                                ║
+╚═══════════════════════════════════════════════════════════════════════════════════════════╝
+            </pre>
+
+            <div class="controls">
+                <input type="text" id="searchInput" placeholder="SEARCH PAPERS..." class="search-input">
+                <button id="searchBtn" class="btn">SEARCH</button>
+                <button id="clearSearchBtn" class="btn">CLEAR</button>
+                <button id="bookmarksBtn" class="btn">BOOKMARKS</button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content" id="mainContent">
+            <div class="loading" id="loadingSpinner">
+                <pre>
+    ███████████████████████████
+    █░░░░░░░░░░░░░░░░░░░░░░░░░█
+    █░ LOADING PAPERS...     ░█
+    █░░░░░░░░░░░░░░░░░░░░░░░░░█
+    ███████████████████████████
+                </pre>
+            </div>
+
+            <div class="paper-view hidden" id="paperView">
+                <div class="three-column">
+                    <!-- Left Column: Metadata -->
+                    <div class="column left-column">
+                        <div class="section">
+                            <h2 class="section-title">[ PAPER INFO ]</h2>
+                            <div class="paper-title" id="paperTitle"></div>
+                            <div class="paper-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">ARXIV ID:</span>
+                                    <span id="paperArxivId"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">PUBLISHED:</span>
+                                    <span id="paperDate"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">CATEGORY:</span>
+                                    <span id="paperCategory"></span>
+                                </div>
+                            </div>
+                            <div class="paper-authors">
+                                <h3 class="subsection-title">AUTHORS:</h3>
+                                <div id="paperAuthors"></div>
+                            </div>
+                            <div class="paper-actions">
+                                <button id="bookmarkBtn" class="btn">☆ BOOKMARK</button>
+                                <a id="pdfLink" href="#" target="_blank" class="btn">PDF ↗</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Center Column: Abstract -->
+                    <div class="column center-column">
+                        <div class="section">
+                            <h2 class="section-title">[ ABSTRACT ]</h2>
+                            <div class="paper-abstract" id="paperAbstract"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Grok Insights -->
+                    <div class="column right-column">
+                        <div class="section">
+                            <h2 class="section-title">[ GROK INSIGHTS ]</h2>
+                            <div class="grok-analysis" id="grokAnalysis">
+                                <div class="no-analysis">
+                                    [ NO ANALYSIS AVAILABLE ]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-results hidden" id="noResults">
+                <pre>
+╔═══════════════════════════════════╗
+║                                   ║
+║     NO PAPERS FOUND               ║
+║                                   ║
+║     Try different search terms    ║
+║     or fetch new papers           ║
+║                                   ║
+╚═══════════════════════════════════╝
+                </pre>
+            </div>
+        </main>
+
+        <!-- Footer Navigation -->
+        <footer class="footer">
+            <div class="nav-controls">
+                <button id="prevBtn" class="nav-btn">◄ PREV</button>
+                <div class="page-indicator" id="pageIndicator">
+                    PAPER <span id="currentPage">0</span> / <span id="totalPages">0</span>
+                </div>
+                <button id="nextBtn" class="nav-btn">NEXT ►</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/ui.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
