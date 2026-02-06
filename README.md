@@ -177,7 +177,6 @@ DEBUG=true
 - Verify API key in `.env`
 - Check rate limits (script uses conservative 6-second delays)
 - Review `logs/app.log` for details
-- See `GROK_API_FIX.md` for detailed troubleshooting
 
 ### Search not working
 - Ensure FTS5 table was created during init
